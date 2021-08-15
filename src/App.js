@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
 
-function App() {
+import React from "react";
+import NavBar from "./components/Navbar";
+import ListTask from "./components/ListTask";
+import { useSelector } from 'react-redux';
+import { selectTodoList } from './redux/reduxSlicer'
+
+
+
+
+export default function App() {
+const todoList = useSelector(selectTodoList);
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+
+    {todoList.map(el =>
+      { 
+        return <ListTask
+        item={el.item}
+        done ={el.done}
+        id = {el.id}
+         />
+      }
+      )}
+
+
+      <NavBar />
+
     </div>
   );
 }
-
-export default App;
