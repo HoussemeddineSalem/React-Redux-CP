@@ -1,14 +1,27 @@
 import React from "react";
 import Checkbox from '@material-ui/core/Checkbox';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteToDo, editToDo } from '../redux/reduxSlicer'
+import { deleteToDo, editToDo, editCheck } from '../redux/reduxSlicer'
 import { selectTodoList } from '../redux/reduxSlicer'
 function ListTask({ item, done, id }) {
 
   const dispatch = useDispatch();
   const todoList = useSelector(selectTodoList);
 
-  const handleChange = () => console.log('changes')
+ 
+  const handleChange = () => {
+    
+    const checkState = () => todoList.findIndex(el => el.id === id);
+    dispatch(
+      editCheck(
+        checkState()
+      )
+    )
+  }
+  const breakThrough =(style)=> done ?
+   style = {textDecoration : 'line-through'} :
+   style = {backgroundColor : 'none'}  ;
+
   const handleDelete = () => {
     dispatch(
       deleteToDo(
@@ -44,7 +57,8 @@ function ListTask({ item, done, id }) {
     />
     <p
       contentEditable={`${content}`}
-      onInput={handleEdit}>
+      onInput={handleEdit}
+      style = {breakThrough()}>
       {item}
       </p>
     <button onClick={handleDelete}>delete task</button>

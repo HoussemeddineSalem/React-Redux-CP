@@ -10,12 +10,12 @@ function NavBar() {
     const [input, setInput] = React.useState('');
     const dispatch = useDispatch();
     const addTodo = () => {
-        console.log('helloWorld'); 
-dispatch(saveToDo({
-    item : input ,
-    done : false , 
-    id : Math.random()
-}))
+        console.log('helloWorld');
+        dispatch(saveToDo({
+            item: input,
+            done: false,
+            id: Math.random()
+        }))
     }
 
 

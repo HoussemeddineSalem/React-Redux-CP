@@ -17,6 +17,12 @@ const reduxSlicer = createSlice({
 
         editToDo: (state,action) => {
             state.todoList.splice(...action.payload)
+        },
+        editCheck : (state,action) => {
+            state.todoList[action.payload]
+            .done = !state.todoList[action.payload]
+            .done;
+           
         }
     }
 });
@@ -24,7 +30,8 @@ const reduxSlicer = createSlice({
 export const {
     saveToDo,
     deleteToDo,
-    editToDo
+    editToDo,
+    editCheck
 
 } = reduxSlicer.actions;
 export const selectTodoList = state => state.todoList;

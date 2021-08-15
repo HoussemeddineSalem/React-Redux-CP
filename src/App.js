@@ -14,9 +14,10 @@ export default function App() {
   return (
     <div className="App">
       <NavBar />
-      
+
       {todoList.map(el => {
         return <ListTask
+        key ={el.id}
           item={el.item}
           done={el.done}
           id={el.id}
