@@ -9,22 +9,23 @@ import { selectTodoList } from './redux/reduxSlicer'
 
 
 export default function App() {
-const todoList = useSelector(selectTodoList);
+  const todoList = useSelector(selectTodoList);
+  //console.log(todoList)
   return (
     <div className="App">
-
-    {todoList.map(el =>
-      { 
+      <NavBar />
+      
+      {todoList.map(el => {
         return <ListTask
-        item={el.item}
-        done ={el.done}
-        id = {el.id}
-         />
+          item={el.item}
+          done={el.done}
+          id={el.id}
+        />
       }
       )}
 
 
-      <NavBar />
+
 
     </div>
   );
