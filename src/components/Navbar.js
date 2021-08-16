@@ -1,8 +1,10 @@
 import React from "react";
-//import { createStore } from 'redux';
 import { useDispatch } from 'react-redux';
-import { saveToDo } from '../redux/reduxSlicer'
-//import { Navbar, Container } from "react-bootstrap";
+import { saveToDo } from '../redux/reduxSlicer';
+import "./Navbar.css";
+import Button from '@material-ui/core/Button';
+
+
 
 
 
@@ -16,34 +18,34 @@ function NavBar() {
             done: false,
             id: Math.random()
         }));
-        
+
     }
 
 
 
     return (
         <div>
-            <form onSubmit ={(e) => e.preventDefault()}>
+            <form className="form__styling" onSubmit={(e) => e.preventDefault()}>
                 <input
+                    className="input__styling"
                     type='text'
                     value={input}
                     onChange={(e) => setInput(e.target.value)}
                 />
 
                 <button
-                    onClick={(e) => {
-                        
+                   className="submit-btn__styling"
+                    onClick={(e) => { 
                         addTodo();
                         setInput("");
-                       
+
                         console.log(e.target.previousSibling.innerHTML)
-                   
+
                     }
                     }
                 >
                     Submit
                 </button>
-
             </form>
 
         </div>

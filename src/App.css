@@ -1,0 +1,30 @@
+.App {
+  font-family: "Montserrat", sans-serif;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  border: none;
+  box-shadow: 10px 15px 5px #7FC8A9;
+  border-radius: 10px;
+  padding: 10px;
+  background-color: #444941;
+  color: #d5eebb;
+  width: 300px;
+  height: 300px;
+}
+
+.select-status__styling{
+  display: flex;
+  justify-content: space-around;
+  padding-top: 10px;
+  font-size: 15px;
+}
+
+#select__styling{
+  border-radius: 5px;
+  font-family: "Montserrat", sans-serif;
+  font-size: 10px;
+
+
+}
