@@ -16,7 +16,10 @@ const reduxSlicer = createSlice({
         },
 
         editToDo: (state,action) => {
-            state.todoList.splice(...action.payload)
+            //state.todoList.splice(...action.payload)
+            state.todoList[action.payload.index] =
+            {...state , item : action.payload.newInput}
+            
         },
         editCheck : (state,action) => {
             state.todoList[action.payload]

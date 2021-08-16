@@ -7,20 +7,21 @@ function ListTask({ item, done, id }) {
 
   const dispatch = useDispatch();
   const todoList = useSelector(selectTodoList);
+  const checkState = () => todoList.findIndex(el => el.id === id);
 
- 
   const handleChange = () => {
-    
-    const checkState = () => todoList.findIndex(el => el.id === id);
+
+
     dispatch(
       editCheck(
-        checkState()
+        checkState(),
+
       )
     )
   }
-  const breakThrough =(style)=> done ?
-   style = {textDecoration : 'line-through'} :
-   style = {backgroundColor : 'none'}  ;
+  const breakThrough = (style) => done ?
+    style = { textDecoration: 'line-through' } :
+    style = { backgroundColor: 'none' };
 
   const handleDelete = () => {
     dispatch(
@@ -31,23 +32,65 @@ function ListTask({ item, done, id }) {
       )
     )
   }
+
   const [content, setContent] = React.useState(false)
-  console.log(content)
+  const allowEdit = (e) => {
 
-  const allowEdit = () => setContent(!content)
+    switch (content) {
+      case false: setContent(!content); break;
+      case true: {
+        setContent(!content);
+        dispatch(
+          editToDo(
+            {
+              newInput: e.target.
+              previousSibling.previousSibling.innerHTML,
+              index: todoList.findIndex(el => el.id === id)
+            }
+          )
+        );
 
- console.log(content)
-  const handleEdit = (e) =>
-    dispatch(
-      editToDo(
-        [
-          todoList.findIndex(el => el.id === id),
-          1,
-          e.currentTarget.textContent
-        ]
-      )
-    )
-  //console.log(todoList.findIndex(el => el.id === id))
+      }; break; 
+      default : 
+
+
+    }
+  }
+
+
+
+
+  // const handleEdit = (e) => {
+
+  //   dispatch(
+  //     editToDo(
+
+  //       {
+  //         newInput: e.currentTarget.innerHTML,
+  //         index: todoList.findIndex(el => el.id === id)
+  //       }
+  //     )
+
+  //   );
+  //   e.preventDefault();
+  // }
+  // const myFunction = (e) => {
+  //   if (e.key === 'Enter') {
+  //     setContent(false)
+  //     dispatch(
+  //       editToDo(
+
+  //         {
+  //           newInput: e.currentTarget.closest(".save-edit").innerHTML,
+  //           index: todoList.findIndex(el => el.id === id)
+  //         }
+  //       )
+
+  //     );
+
+  //   }
+  // }
+
   return <div>
     <Checkbox
       checked={done}
@@ -56,13 +99,26 @@ function ListTask({ item, done, id }) {
       color="primary"
     />
     <p
+      
       contentEditable={`${content}`}
-      onInput={handleEdit}
-      style = {breakThrough()}>
+      suppressContentEditableWarning={true}
+      // onInput={handleEdit}
+      style={breakThrough()} >
       {item}
-      </p>
+    </p>
+
+    {/* <input
+      type='text'
+      onChange={handleEdit}
+      value={item}
+      style={breakThrough()}
+
+    /> */}
+
+
+
     <button onClick={handleDelete}>delete task</button>
-    <button onClick={allowEdit}> {!content ? <span>edit</span> : <span>save edit</span> }</button>
+    <button onClick={allowEdit}> {!content ? 'edit' : 'save edit'}</button>
   </div>
 
 }

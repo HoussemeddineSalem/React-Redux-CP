@@ -10,19 +10,20 @@ function NavBar() {
     const [input, setInput] = React.useState('');
     const dispatch = useDispatch();
     const addTodo = () => {
-        console.log('helloWorld');
+
         dispatch(saveToDo({
             item: input,
             done: false,
             id: Math.random()
-        }))
+        }));
+        
     }
 
 
 
     return (
         <div>
-            <form>
+            <form onSubmit ={(e) => e.preventDefault()}>
                 <input
                     type='text'
                     value={input}
@@ -31,8 +32,12 @@ function NavBar() {
 
                 <button
                     onClick={(e) => {
-                        e.preventDefault();
+                        
                         addTodo();
+                        setInput("");
+                       
+                        console.log(e.target.previousSibling.innerHTML)
+                   
                     }
                     }
                 >

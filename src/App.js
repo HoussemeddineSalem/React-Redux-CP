@@ -14,10 +14,20 @@ export default function App() {
   return (
     <div className="App">
       <NavBar />
+      <label>Choose </label>
 
-      {todoList.map(el => {
+      <select name="#" id="#">
+        <option value="">--Please choose an option--</option>
+        <option value="All">All</option>
+        <option value="Done">Done</option>
+        <option value="unDone">unDone</option>
+      </select>
+
+      {todoList
+
+      .map(el => {
         return <ListTask
-        key ={el.id}
+          key={el.id}
           item={el.item}
           done={el.done}
           id={el.id}
